@@ -1,0 +1,17 @@
+name: Backend support
+description: Propose an inference adapter with explicit measurement semantics.
+body:
+  - type: textarea
+    id: backend
+    attributes:
+      label: Backend and platform
+      description: Backend version, supported devices, integration API, license, and dependency requirements.
+    validations:
+      required: true
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Measurement boundaries
+      description: How can prefill, decode, TTFT, scheduling, and memory be measured without fabricating unavailable metrics?
+    validations:
+      required: true

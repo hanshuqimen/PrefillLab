@@ -1,0 +1,17 @@
+name: Bug report
+description: Report reproducible failures or measurement problems.
+body:
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction
+      description: Command, configuration, expected behavior, and actual behavior. Remove secrets and private paths.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: PrefillLab version and sanitized doctor output. State whether results are simulated.
+    validations:
+      required: true

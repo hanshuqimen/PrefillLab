@@ -1,0 +1,10 @@
+name: Feature request
+description: Suggest an improvement backed by a research or engineering use case.
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: Problem and desired behavior
+      description: Explain the experiment you want to perform and how you would validate it.
+    validations:
+      required: true
