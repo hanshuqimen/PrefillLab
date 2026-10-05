@@ -46,7 +46,7 @@ prefilllab --help
 prefilllab doctor --format json
 prefilllab run --backend mock --model mock-7b --format json --output result.json
 prefilllab sweep --backend mock --input-lengths 512,1024,2048,4096 --batch-sizes 1,2,4
-prefilllab compare results/experiment_*.json
+prefilllab compare result1.json result2.json
 prefilllab report result.json --output prefilllab-report.html
 prefilllab serve --demo --port 8000
 ```
@@ -79,7 +79,7 @@ See [examples](examples) for CSV export and model comparison.
 
 ## Dashboard and API
 
-`prefilllab serve --demo` seeds a deterministic sample set if history is empty. Simulated and measured experiments are grouped separately in charts and filters. New Benchmark runs a synchronous request; a busy state is shown until it completes. Errors preserve the entered configuration. `/api/docs` provides OpenAPI documentation.
+`prefilllab serve --demo` adds a deterministic sample set once while preserving existing history. Simulated and measured experiments are grouped separately in charts and filters. New Benchmark runs a synchronous request; a busy state is shown until it completes. Errors preserve the entered configuration. `/api/docs` provides OpenAPI documentation.
 
 API routes: `GET /api/health`, `GET/POST /api/experiments`, `GET/DELETE /api/experiments/{id}`, `POST /api/benchmarks/run`, `GET /api/system`, `GET /api/backends`, `GET /api/models`. List queries support `limit` and `offset`. Import accepts a validated v1 result. Benchmark runs are serialized within one server process to prevent GPU interference.
 

@@ -65,6 +65,21 @@ def test_demo_seed_is_idempotent(tmp_path):
             assert all(result["simulated"] for result in response["items"])
 
 
+def test_demo_preserves_existing_research(tmp_path):
+    database = tmp_path / "research.db"
+    repository = ExperimentRepository(database)
+    existing = Benchmark(model="my-existing-experiment").run()
+    repository.save(existing)
+    repository.close()
+    for _ in range(2):
+        with TestClient(create_app(database, demo=True)) as client:
+            assert client.get("/api/experiments").json()["total"] == 31
+            assert (
+                client.get(f"/api/experiments/{existing.id}").json()["config"]["model"]
+                == existing.config.model
+            )
+
+
 def test_cli_end_to_end(tmp_path, monkeypatch):
     monkeypatch.setenv("PREFILLLAB_DB", str(tmp_path / "cli.db"))
     runner = CliRunner()
